@@ -170,3 +170,16 @@
 // }
 
 
+
+//Object Coding Challenge #1
+// Create a bank account object of a customer where he/she has his/her firstName, lastName, accountNo., currentBalance
+// this object should also have method for fund deposit, fund withdrawal and fund Check.
+
+// Incase of fund deposit:
+// Step: add amount that has been deposited with the current balance and show message
+
+// Incase of fund withdrawal:
+// Step1: Check if there's sufficient balance in the account
+// Step2: If there's sufficient balance then deduct amount from currentBalance and show message.
+// If there's no sufficient balance just show the message
+
