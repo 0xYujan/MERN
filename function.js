@@ -1,3 +1,6 @@
+
+
+
 //function: A function is basivally a block of code that can execute a specific task. The value or action performed by a function can be achived when we call or invoke a function. A fuction consits of a function name (to write function names we have to follow the rules of writing identifiers). A function contains a paranthesis where parameters can be contained.
 
 //There are three way to declear a function They are:-

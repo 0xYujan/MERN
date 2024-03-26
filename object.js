@@ -183,3 +183,116 @@
 // Step2: If there's sufficient balance then deduct amount from currentBalance and show message.
 // If there's no sufficient balance just show the message
 
+
+// const Bank ={
+
+    
+//     firstName: "Ram ",
+//     lastName: "Thapa",
+//     accountNo: 19358358,
+//     currentBalance: 4000,
+//     Fund: {
+//         withdrawal: (withdrawalAmount)=> (withdrawalAmount > Bank.currentBalance) ? console.log(`there's no sufficient balance`): console.log(`Amount withdrawal successfuly`),
+    
+//         deposited: (addAmount)=> {Bank.Fund.currentBalance + addAmount 
+//             console.log(`You Amount has been deposited successfuly`)
+//         }
+// }
+//     // statement: 
+    
+// }
+
+// // // const payment = Bank(1000,2343)
+// Bank.Fund.deposited(343)
+
+function Bank(firstName, lastName, accountNo, currentBalance){
+
+    
+      this.first_name = firstName,
+      this.last_name = lastName,
+      this.account_no = accountNo,
+      this.current_balance = currentBalance,
+      this.transaction = [],
+      // this.addAmount = addAmount,
+
+      this.withdrawal = function(withdrawalAmount){
+      if(withdrawalAmount > Bank.currentBalance){
+        console.log(`there's no sufficient balance`)
+      } else{
+        Bank.current_balance -= withdrawalAmount;
+        this.transaction.push({
+          type: "Withdrawal",
+          ammount: withdrawalAmount,
+          date: Date.now()
+        })
+        console.log(`Amount withdrawal successfuly`)
+    }
+  
+  },
+  this.deposited = function(addAmount) {
+    Bank.currentBalance + addAmount
+    this.transaction.push({
+      type: "Deposited",
+      ammount: addAmount,
+      date: Date.now()
+    }) 
+    console.log(`You Amount has been deposited successfuly`)
+      },
+
+  this.fundCheck = function(){
+    `your total amount is ${currentBalance} `
+  },
+
+  this.depositedCheck = function(){
+    return this.transaction.filter(t => t.type === 'Deposited')
+  }
+  this.withdrawalCheck  = ()=> this.transaction.filter(t => t.type === 'Withdrawal')
+      
+} 
+  
+const bank = new Bank("Yujan", "Ranjitkar",3433435, 40000)
+bank.fundCheck()
+bank.deposited(4000)
+bank.deposited(300)
+bank.withdrawal(4000)
+
+console.log(bank)
+console.log(bank.depositedCheck())
+console.log(bank.withdrawalCheck())
+
+
+
+//There are two ways to create object dynamically in javascript.
+//1. Factory Function 
+// const Product = (producName, productPrice, productDesc, countInStock, paymentBool) => {
+//     return {
+//         product_name: producName,
+//         product_price: productPrice,
+//         product_desc: productDesc,
+//         count_in_stock: countInStock,
+//         payment_message: ()=> paymentBool ? console.log(`Payment has been received`) : console.log(`Please make a payment.`)
+
+//     }
+// }
+
+// const jacket = Product('Nike Jacket', 9000, 'This is very warm jacket', 50, true)
+// console.log(jacket)
+// jacket.payment_message()
+
+
+//2. Constructor Functiona
+
+// function Product(producName, productPrice, productDesc, countInStock, paymentBool){
+//         this.product_name= producName;
+//         this.product_price= productPrice;
+//         this.product_desc= productDesc;
+//         this.count_in_stock= countInStock
+//         this.payment_message= ()=> paymentBool ? console.log(`Payment has been received`) : console.log(`Please make a payment.`)
+
+// }
+
+// const jacket = new Product('Nike Jacket', 9000, 'This is very warm jacket', 50, true)
+// console.log(jacket);
+// jacket.payment_message()
+
+

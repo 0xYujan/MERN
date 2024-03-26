@@ -178,48 +178,51 @@ let num = [4,6,23,76,3,4,23]
 const last = num => num[num.length-1]
 console.log(last(num)) 
 ```
-//Methods that does not change the original array:
+###Methods that does not change the original array:
 
-//1.slice() -> This methods is used to take a portion of the array. It doesn't mutate the origina array rather it creates a shallow copy of it. It takes two arguments
-//1st arg -> Starting index
-//2nd arg -> count of element (does not include the final element of the count)
+1.`slice()` -> This methods is used to take a portion of the array. It doesn't mutate the origina array rather it creates a shallow copy of it. It takes two arguments
+`1st arg -> Starting index`
+`2nd arg -> count of element` (does not include the final element of the count)
 
-// let fruits = ['apple', 'banana', 'mango', 'guava']
-// console.log(fruits.slice(1,3))
-// console.log(fruits)
+```javascript
+let fruits = ['apple', 'banana', 'mango', 'guava']
+console.log(fruits.slice(1,3))
+console.log(fruits)
+```
+
+`concat()` -> this methd is used to join two array
+
+```javascript
+let a = [23,345,56,34]
+let b = [23,46,876,98,2]
+
+console.log(a.concat(fruits))
+```
+`3. spread operator(...)` -> This opertor is used to copy elements of one array to the another array
+```javascript
+let toys = ['ball', 'car']
+let hobbies = ['reading', 'coding']
+
+let arrayMadeUsingSpreadOperator = [...toys, ...hobbies]
+console.log(arrayMadeUsingSpreadOperator)
+```
 
 
-// //concat() -> this methd is used to join two array
+###Create a function that takes array of numbers and return the sum of the number
 
-// let a = [23,345,56,34]
-// let b = [23,46,876,98,2]
+```javascript
+let num = [1,3,4,5,7,8]
 
-// console.log(a.concat(fruits))
-
-//3. spread operator(...) -> This opertor is used to copy elements of one array to the another array
-
-// let toys = ['ball', 'car']
-// let hobbies = ['reading', 'coding']
-
-// let arrayMadeUsingSpreadOperator = [...toys, ...hobbies]
-// console.log(arrayMadeUsingSpreadOperator)
-
-
-
-// //Create a function that takes array of numbers and return the sum of the number
-
-// let num = [1,3,4,5,7,8]
-
-// const last = num => {
-//   let sum =0
-//   for(i=0; i<num.length; i++){
-//     sum += num[i]
-//   }
-//   i++
-//   return sum
-// }
-// console.log(last(num))
-
+const last = num => {
+  let sum =0
+  for(i=0; i<num.length; i++){
+    sum += num[i]
+  }
+  i++
+  return sum
+}
+console.log(last(num))
+```
 
 
 //MAP -> This method is used to iterate over the array and change the value of each element present in the array. This method does't mutates the original array. This method returns a new array
