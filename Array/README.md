@@ -208,7 +208,7 @@ console.log(arrayMadeUsingSpreadOperator)
 ```
 
 
-###Create a function that takes array of numbers and return the sum of the number
+### Create a function that takes array of numbers and return the sum of the number
 
 ```javascript
 let num = [1,3,4,5,7,8]
@@ -237,7 +237,7 @@ This method has a call back function with three arguments and that callback func
 syntax: array.map((e, i, arr)=>{})
 ```
 
-##example
+## example
 ```javascript
 let num = [1,2,3,4,5,6]
 output need: [ 2, 4, 6, 8, 10,12 ]
@@ -275,121 +275,129 @@ let output = ktmTempInCel.map(temp => temp *1.8 +32)
 console.log(output)
 ```
 
-// Filter method
-//This is an array method that is used to filter individual element from an array. This method also returns a new array
+## Filter method
+This is an array method that is used to filter individual element from an array. This method also returns a new array
 
-//Sysntax:
-//array.filter((element, index, array)=>{return condition;});
+`Sysntax:`
+```javascript
+array.filter((element, index, array)=>{return condition;});
+```
+In the callback function of this method a condition is intialized and based on the elements are added (filtered) in the new array returned by this method
 
-//In the callback function of this method a condition is intialized and based on the elements are added (filtered) in the new array returned by this method
+If the condition is true element is added and if the condition is false the element won't be added.
 
-//If the condition is true element is added and if the condition is false the element won't be added.
+### Example
+```javascript
+let number = [10,4,38,403,43,23,76,23,1,4,9,5]
 
-// //Example
-// let number = [10,4,38,403,43,23,76,23,1,4,9,5]
+let Odd = number.filter((num)=> num %2 !== 0) //[403, 43, 23, 23, 1,  9,  5]
 
-// let Odd = number.filter((num)=> num %2 !== 0) //[403, 43, 23, 23, 1,  9,  5]
+let evenIndex = number.filter((_, index)=> index %2 === 0) //[ 10, 38, 43, 76, 1, 9 ] 
+// if element is not used so we used "_" rather than e or element
 
-// let evenIndex = number.filter((_, index)=> index %2 === 0) //[ 10, 38, 43, 76, 1, 9 ] 
-// // if element is not used so we used "_" rather than e or element
+console.log(Odd)
+console.log(evenIndex)
+```
 
-// console.log(Odd)
-// console.log(evenIndex)
-
-
+### Example
+```javascript
 // A survay was done in a community where the monthly salary of the household 
 
-// let salaries = [17000, 25000, 35000, 50000, 23000, 45500, 9990, ]
+let salaries = [17000, 25000, 35000, 50000, 23000, 45500, 9990, ]
 
-// task
 // The gov has defined the minimum salary is 17,500, find out how many people from the survay are getting below average salary
 
 //Example output: Out of 10 people 3 are getting below avg salary
 
-// let belowSalary = salaries.filter((salary)=> salary < 17500
+let belowSalary = salaries.filter((salary)=> salary < 17500
 
-// )
-// console.log(`Out of ${salaries.length } people ${belowSalary.length} are getting below avg salary`)
+)
+console.log(`Out of ${salaries.length } people ${belowSalary.length} are getting below avg salary`)
+let minimum = salaries.filter(salary => salary < 17500).map(min=> `${min} is ${100 - (min /17500 * 100).toFixed(2)}% below than avg salary`)
 
+console.log(minimum)
+```
 
-// let minimum = salaries.filter(salary => salary < 17500).map(min=> `${min} is ${100 - (min /17500 * 100).toFixed(2)}% below than avg salary`)
+## Reduce Method -> 
+Reduce is the method of that can return any type of value. (Either primitive or non-primitive ). It will reduce all element in an array into a single value.
 
-// console.log(minimum)
+Unlike map and filter this method has two argument:
+1st. -> callback function
+2nd. -> Initial value of accumulator
 
+The callback fubction in this method has four parameters
+1. accumulator
+2. current element
+3. index
+4. array
 
-//Reduce Method -> Reduce is the method of that can return any type of value. (Either primitive or non-primitive ). It will reduce all element in an array into a single value.
+```javascript
+// Example -> summing all elements in the array
+let num =[3,45,23,5,67,23,76,34,34]
+let output = num.reduce((sum, num)=> sum + num)
+console.log(output)
+```
 
-//Unlike map and filter this method has two argument:
-//1st. -> callback function
-//2nd. -> Initial value of accumulator
-
-//The callback fubction in this method has four parameters
-//1. accumulator
-//2. current element
-//3. index
-//4. array
-
-// //Example -> summing all elements in the array
-// let num =[3,45,23,5,67,23,76,34,34]
-// let output = num.reduce((sum, num)=> sum + num)
-// console.log(output)
-
-
-//Task avg salary 
-
-// let salaries = [17000, 25000, 35000, 50000, 23000, 45500, 9990]
-// let output = salaries.reduce((sum, num)=> sum + num)/salaries.length
-// console.log(output)
-
-//
-// let salaries = [17000, 25000, 35000, 50000, 23000, 45500, 9990]
-// let minimum = salaries.reduce((acc, num)=>{num < 17500 && acc.push(`${num} is ${100 - (num /17500 * 100).toFixed(2)}% below than avg salary`)
-// return acc},[]
-// )
-// console.log(minimum)
+### Task avg salary 
+```javascript
+let salaries = [17000, 25000, 35000, 50000, 23000, 45500, 9990]
+let output = salaries.reduce((sum, num)=> sum + num)/salaries.length
+console.log(output)
 
 
-//create a function that takes two parameter, word and letter respectively. The function should return the count letter present in the word
+let salaries = [17000, 25000, 35000, 50000, 23000, 45500, 9990]
+let minimum = salaries.reduce((acc, num)=>{num < 17500 && acc.push(`${num} is ${100 - (num /17500 * 100).toFixed(2)}% below than avg salary`)
+return acc},[]
+)
+console.log(minimum)
+```
 
-//exp output letter count ('apple', 'p') -> 'There are 2 p 's in the word apple
-//hint Convert word into array
+## Task
+create a function that takes two parameter, word and letter respectively. The function should return the count letter present in the word
 
-//By using split method:
+exp output letter count ('apple', 'p') -> 'There are 2 p 's in the word apple
+hint Convert word into array
+
+By using split method:
+
+```javascript
 //Syntax: 
-//String.split(separator)
-// let str = "Hello World"
-// let arrStr = str.split("")
-//console.log(arrStr)
+String.split(separator)
+let str = "Hello World"
+let arrStr = str.split("")
+console.log(arrStr)
 
-//By using split method:
-// // Array From
-// let str = "Hello World"
-// let arrStr = Array.from(str)
-// console.log(arrStr)
-
-
-// const letterCount =(word, letter)=>{
-//   // let arrLetters = [...word]
-//   // let output = arrLetters.reduce((count, letterr) => {
-//   let output = [...word].reduce((count, letterr) => {
-//     if((letterr.toLowerCase()) === (letter.toLowerCase())){
-//     count++
-//   }
-//   return count
-// },0)
-
-// return `There ${(output>1 ? `are`:`is`)} ${output} ${letter}${(output>1 ? `'s`:``)} in the word ${word}`
-// // console.log(`There are ${output}${letter}'s in the word ${word}`)
-// } 
-
-// console.log(letterCount('rmlal', 'a'))
+// By using split method:
+// Array From
+let str = "Hello World"
+let arrStr = Array.from(str)
+console.log(arrStr)
 
 
-//Array Destructing
+const letterCount =(word, letter)=>{
+  // let arrLetters = [...word]
+  // let output = arrLetters.reduce((count, letterr) => {
+  let output = [...word].reduce((count, letterr) => {
+    if((letterr.toLowerCase()) === (letter.toLowerCase())){
+    count++
+  }
+  return count
+},0)
+
+return `There ${(output>1 ? `are`:`is`)} ${output} ${letter}${(output>1 ? `'s`:``)} in the word ${word}`
+// console.log(`There are ${output}${letter}'s in the word ${word}`)
+} 
+
+console.log(letterCount('rmlal', 'a'))
+```
+
+## Array Destructing
 //It is a way to sequentially assign values from arrays to variable
 
-//example:
+##### example:
+```javascript
 let [a,b,c] = [1,2,3]
 
 //Rest Parameters
 let [x,y,z, ...others] = [9,8,7,6,5,4,3,2,1] 
+```
