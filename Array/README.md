@@ -225,51 +225,55 @@ console.log(last(num))
 ```
 
 
-//MAP -> This method is used to iterate over the array and change the value of each element present in the array. This method does't mutates the original array. This method returns a new array
+`MAP ->` This method is used to iterate over the array and change the value of each element present in the array. This method does't mutates the original array. This method returns a new array
 
-//This method has a call back function with three arguments and that callback function has three paramaters
+This method has a call back function with three arguments and that callback function has three paramaters
 
-// 1st -> Element
-// 2nd -> index of that Element
-// 3rd -> array itself
+1st -> Element
+2nd -> index of that Element
+3rd -> array itself
 
-//syntax: array.map((e, i, arr)=>{})
+```javascript
+syntax: array.map((e, i, arr)=>{})
+```
 
-//example
-// let num = [1,2,3,4,5,6]
-//output need: [ 2, 4, 6, 8, 10,12 ]
+##example
+```javascript
+let num = [1,2,3,4,5,6]
+output need: [ 2, 4, 6, 8, 10,12 ]
 
-// let doubleNum = num.map(e => e * 2)
-// console.log(doubleNum)
+let doubleNum = num.map(e => e * 2)
+console.log(doubleNum)
 
-// let num = [1,2,3,4,5,6]
-// let expOutput = num.map((e,i)=> e * i
-// )
-// console.log(expOutput)
-// // //OutPut [ 0, 2, 6, 12, 20, 30 ]
+let num = [1,2,3,4,5,6]
+let expOutput = num.map((e,i)=> e * i
+)
+console.log(expOutput)
+//OutPut [ 0, 2, 6, 12, 20, 30 ]
+```
 
-//A company offered 15% increment in a salary for its employees
+`Task`  A company offered 15% increment in a salary for its employees
 
-// let salary2080 = [17000, 25000, 35000, 50000]
+```javascript
+let salary2080 = [17000, 25000, 35000, 50000]
 
-// let salary2081 = salary2080.map(e=> e*.15+e)
-// console.log(salary2081)
+let salary2081 = salary2080.map(e=> e*.15+e)
+console.log(salary2081)
 
-// let students = ['Sandip', 'Kushal', 'Tara', 'Ajaya', 'Aram']
+let students = ['Sandip', 'Kushal', 'Tara', 'Ajaya', 'Aram']
+let details =  students.sort().map((e, i)=> `Roll no.:${i+1} ${e}`)
+console.log(details)
 
-// let details =  students.sort().map((e, i)=> `Roll no.:${i+1} ${e}`)
-// console.log(details)
 
+ktm temperature (deg Celius) this week has been
 
-//ktm temperature (deg Celius) this week has been
+let ktmTempInCel = [17, 10, 3, 5, 23, 10, 12]
 
-// let ktmTempInCel = [17, 10, 3, 5, 23, 10, 12]
+// convert this temp to fahrenheit
 
-// // convert this temp to fahrenheit
-
-// let output = ktmTempInCel.map(temp => temp *1.8 +32)
-// console.log(output)
-
+let output = ktmTempInCel.map(temp => temp *1.8 +32)
+console.log(output)
+```
 
 // Filter method
 //This is an array method that is used to filter individual element from an array. This method also returns a new array
