@@ -92,3 +92,45 @@ paraa.addEventListener('click', ()=>{
     let text = paraa.textContent
     alert(text)
 } )
+
+const Countt = document.getElementById("div4")
+const Dec = document.getElementById("Dec")
+const Count = document.getElementById("Count")
+const Inc = document.getElementById("Inc")
+const Res = document.getElementById("Res")
+let Num = 0
+
+
+
+// let Countt = document.querySelector(".Dec")
+
+Dec.addEventListener('click', () =>{
+    Num -=1
+    Count.textContent = Num; 
+})
+
+Inc.addEventListener('click', () =>{
+    Num += 1
+    Count.textContent = Num
+})
+
+Res.addEventListener('click', ()=>{
+    Count.textContent = 0
+} )
+
+const inputt  = document.querySelector(".inputt")
+const show  = document.querySelector(".show")
+show.addEventListener('click', () =>{
+
+    if(inputt.type === 'password'){
+
+        inputt.type ='text'
+    }else{
+        inputt.type = 'password'
+    }
+
+    
+    show.textContent = "Hide"
+})
+
+
