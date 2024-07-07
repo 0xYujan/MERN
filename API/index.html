@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: lightcyan;
+        }
+        #userData {
+            display: inline-block;
+            text-align: left;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #imgDis {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #newBtn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="imgDis">
+    </div>
+    <div id="userData">
+    </div>    
+    <div id="newBtn">
+        <button onclick="ranID()">New User</button>
+    </div>
+    <script>
+        async function ranID(){
+            let result = await fetch('https://randomuser.me/api/');
+            result = await result.json();
+            console.warn(result);
+
+            
+            let user = result.results[0];
+
+            document.getElementById('imgDis').innerHTML = `
+            <img src="${user.picture.large}" >`;
+
+            document.getElementById('userData').innerHTML = `
+           
+                    <strong>Name:</strong> ${user.name.title}. ${user.name.first} ${user.name.last}<br>
+                    <strong>Address:</strong> ${user.location.street.name}, ${user.location.city}, ${user.location.country}<br>
+                    <strong>Age:</strong> ${user.dob.age}<br>
+                    <strong>Gender:</strong> ${user.gender}<br>
+                    <strong>Email:</strong> ${user.email}<br>
+                    <strong>Phone:</strong> ${user.phone}<br>
+                    <strong>Login Details:</strong> <ul>Username: ${user.login.username} </ul> <ul>Password: ${user.login.password}</ul><ul>md5: ${user.login.md5}<br>
+                 
+                    `;
+        }
+        ranID();
+    </script>
+</body>
+</html>

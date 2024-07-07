@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await</title>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+        //Async/Await is a moder JS feature which make asynchronous code simpler to write. Working with promisises and performing task asynchronously is easier by using it.
+
+        //Async is use to create an asynchronous function and Await is used to wait till the asynchronous task completed.
+
+    let news=[
+    {title: "Hello 1", content:"FirstNews"},
+    {title: "Hello 2", content:"SecondNews"},
+    {title: "Hello 3", content:"ThirdNews"}
+]
+
+const showNews = ()=>{
+    setTimeout(()=>{
+        let result = ""
+        news.forEach(post => {
+            result += `<li><code>${post.title}</code></li>`
+            
+        })
+        console.log(result)
+        document.querySelector('div').innerHTML = result
+
+    }, 3000)
+
+
+}
+
+showNews();
+
+const addNews = (newNews) =>{
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            news.push(newNews)
+            let error = false //true to make error 
+            if(!error){
+                resolve()
+            }else{
+                reject({message:"Somting went wrong"})
+            }
+        },5000)
+    })
+}
+
+//                              Add Data 
+// const asynFunc = async () =>{
+//     await addNews({title:"Hello 4", content:"Fourth News"})
+//     showNews()
+// }
+
+
+//                              Error handeling 
+const asynFunc = async () =>{
+    try{
+    await addNews({title:"Hello 4", content:"Fourth News"})
+    showNews()
+    }catch (e){
+        document.write(e.message)
+    }
+}
+
+asynFunc();
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

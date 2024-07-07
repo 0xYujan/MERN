@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+// Promise: Promise is an inbuild JS object which can represent eventual compilation or failour any asynchronous operation. To overcome the drawback of using callback function for asynchronous task, promises are used. Promises make asynchronous work much more readable, Error handeling is easier in promises.
+
+/* There are three major stacks in promises:-
+1. Pending
+2. Fulfilled/Resolved
+3. Rejected
+*/
+
+let news=[
+    {title: "Hello 1", content:"FirstNews"},
+    {title: "Hello 2", content:"SecondNews"},
+    {title: "Hello 3", content:"ThirdNews"}
+]
+
+const showNews = ()=>{
+    setTimeout(()=>{
+        let result = ""
+        news.forEach(post => {
+            result += `<li><code>${post.title}</code></li>`
+            
+        })
+        console.log(result)
+        document.querySelector('div').innerHTML = result
+
+    }, 3000)
+
+
+}
+
+showNews();
+
+// Add News
+// addNews =(newss) =>{
+//     setTimeout(()=>{
+//         news.push(newss)
+//     }, 1000)
+// }
+
+const addNews = (newNews) =>{
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            news.push(newNews)
+            let error = false
+            if(!error){
+                resolve()
+            }else{
+                reject({message:"Somting went wrong"})
+            }
+        },5000)
+    })
+}
+addNews({title: "Hello 4", content:"FourthNews"}).then(showNews).catch(e => alert(e.message))
+
+//Creating a promise is not done most of time. Developer tents to work with pre-exesting promises. They either use libraryes or a methods that returns a promises for example:- axios (a library)
+
+    </script>
+</body>
+</html>
