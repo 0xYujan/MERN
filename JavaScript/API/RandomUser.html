@@ -42,7 +42,7 @@
     <div id="newBtn">
         <button onclick="ranID()">New User</button>
     </div>
-    <script>
+    <script src="script.js">
         async function ranID(){
             let result = await fetch('https://randomuser.me/api/');
             result = await result.json();

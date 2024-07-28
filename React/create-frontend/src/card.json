@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Yujan Ranjitkar",
+    "level": "Bachelor",
+    "faculty": "BCA",
+    "img": "/img/Yujan.jpg",
+    "validDate": "2082-06-30"
+  },
+  {
+    "id": 2,
+    "name": "Kushal Khadka",
+    "level": "Bachelor",
+    "faculty": "BCA",
+    "img": "/img/Kushal.jpg",
+    "validDate": "2082-06-30"
+  },
+  {
+    "id": 3,
+    "name": "Rahul Shrestha",
+    "level": "Bachelor",
+    "faculty": "BCA",
+    "img": "/img/Rahul.jpg",
+    "validDate": "2082-06-30"
+  },
+  {
+    "id": 4,
+    "name": "Esan Adhikari",
+    "level": "Bachelor",
+    "faculty": "BCA",
+    "img": "/Img/Prachanda.jpg",
+    "validDate": "2082-06-30"
+  },
+  {
+    "id": 5,
+    "name": "Aayush Baral",
+    "level": "Bachelor",
+    "faculty": "BCA",
+    "img": "/img/Aayush.jpg",
+    "validDate": "2082-06-30"
+  }
+]
