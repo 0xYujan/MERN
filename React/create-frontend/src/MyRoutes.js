@@ -4,6 +4,7 @@ import About from './Pages/About'
 import HomePage from './Pages/HomePage'
 import MainLayout from './Layouts/MainLayout'
 import ProductCard from './UI Components/ProdutCard'
+import ProductDetails from './Pages/ProductDetails'
 
 const MyRoutes = () =>{
     return (
@@ -15,6 +16,7 @@ const MyRoutes = () =>{
                 <Route path='/contact' element={<Contact />}/>
                 <Route path='/about' element={<About />} />
                 <Route path='/ProdutCard' element={<ProductCard />}/>
+                <Route path='/product-details/:productId' element={<ProductDetails />}/>
                 </Route>
             </Routes>
         </Router>

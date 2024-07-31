@@ -3,7 +3,7 @@ import Product from "../Img/Prod.jpg";
 import Slider1 from "../Img/1.jpg";
 import Slider2 from "../Img/2.jpg";
 
-const ProductCard = ({ image, title, price, description }) => {
+const ProductCard = ({ image, title, price, description, id }) => {
   return (
     <div>
       <div className="card" style={{ width: "18rem", margin: " 0 40px" }}>
@@ -13,7 +13,7 @@ const ProductCard = ({ image, title, price, description }) => {
           <p className="card-text">{description}</p>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Price: {price}</li>
+          <li className="list-group-item">Rs. {price*134}</li>
           {/* <li className="list-group-item">Dapibus ac facilisis in</li>
     <li className="list-group-item">Vestibulum at eros</li> */}
         </ul>
@@ -21,9 +21,9 @@ const ProductCard = ({ image, title, price, description }) => {
           <Link to="#" className="card-link">
             Add To Card
           </Link>
-          <Link to="#" className="card-link">
-            Buy Now
-          </Link>
+          <Link to={`/product-details/${id}`} className="card-link">
+            View Details 
+         </Link>
         </div>
       </div>
     </div>
