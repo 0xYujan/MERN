@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
-  const [similarProducts, setSimilarProducts] = useState([]);
+  // const [similarProducts, setSimilarProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [productsByCategory, setProductsByCategory] = useState([]);

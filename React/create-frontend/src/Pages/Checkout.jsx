@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,8 +37,18 @@ const Checkout = () => {
     setTotalPrice(total);
   };
 
-  const ClearCart = (id) =>{
+  const ClearCart = (id, delta) =>{
     localStorage.removeItem("cartItemsKey");
+  
+      
+  
+    // const DeleteItem = cartItems((item) =>{
+    //   if(item.id === id){
+    //     localStorage.removeItem("cartItemsKey");
+    //   }
+
+    // })
+    
   }
 
   const handleQuantityChange = (id, delta) => {

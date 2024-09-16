@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Product from "../Img/Prod.jpg";
-import Slider1 from "../Img/1.jpg";
-import Slider2 from "../Img/2.jpg";
+// import Product from "../Img/Prod.jpg";
+// import Slider1 from "../Img/1.jpg";
+// import Slider2 from "../Img/2.jpg";
 
 const ProductCard = ({ image, title, price, description, id }) => {
   return (
