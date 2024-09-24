@@ -2,12 +2,13 @@ const express = require('express')
 require('dotenv').config()
 require('./db/connection')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 
-const testRoute = require('./routes/testRoute')
 const categoryRoute = require('./routes/categoryRoute')
 const productRoute = require('./routes/productRoute')
 const authRoute = require('./routes/authRoute')
+const orderRoute = require('./routes/orderRoute')
 
 
 const app = express()
@@ -21,12 +22,13 @@ const app = express()
 
 //middleware
 app.use(bodyParser.json())
+app.use(morgan('dev'))
 
 // Routes 
-app.use('/api', testRoute)
 app.use('/api', categoryRoute)
 app.use('/api', productRoute)
 app.use('/api', authRoute)
+app.use('/api', orderRoute)
 
 
 port = process.env.PORT || 8000

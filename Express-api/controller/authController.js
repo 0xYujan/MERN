@@ -3,6 +3,7 @@ const Token = require('../models/tokenModel')
 const crypto = require('crypto')
 const sendEmail = require('../utils/setEmail')
 const jwt = require('jsonwebtoken') // authentication
+const {expressjwt} = require('express-jwt') // authorization
 // to register a new user
 
 exports.postUser = async(req, res)=>{
@@ -112,7 +113,7 @@ exports.signIn = async(req, res) =>{
         return res.status(400).json({error: 'please verify your email to continue'})
     }
     //now generate token with user id and jwt secret
-    const token = jwt.sign({_id:user.id}, process.env.JWT_SECRET)
+    const token = jwt.sign({_id:user.id, role:user.role}, process.env.JWT_SECRET)
     //store token in the cookie
     res.cookie('myCookie', token, {expire: Date.now()+999999})
     //return user information to frontend
@@ -172,4 +173,70 @@ exports.resetPassword = async(req, res)=>{
         return res.status(400).json({error:'failed to reset password'})
     }
     res.json({msg:'password has been reset '})
+}
+
+// user list
+exports.userList = async(req, res)=>{
+    const user = await User.find()
+    .select('-hashed_password')
+    .select('-salt')
+    if(!user){
+        return res.status(400).json({error:'somting went wrong'})
+    }
+    res.send(user)
+}
+
+// user details
+exports.userDetails = async(req, res)=>{
+    const user = await User.findById(req.params.id)
+    .select('-hashed_password')
+    .select('-salt')
+    if(!user){
+        return res.status(400).json({error:'somting went wrong'})
+    }
+    res.send(user)
+}
+
+// middleware for user role
+exports.requireUser = (req, res, next) =>{
+    // verify jwt
+    expressjwt({
+        secret:process.env.JWT_SECRET,
+        algorithms:['HS256']
+    })(req, res, (err)=>{
+        if(err){
+            return res.status(401).json({error: 'Unauthorized'})
+        }
+        //check for user role
+        if(req.user.role === 0){
+            //grant access
+            next()
+        }
+        else{
+            // unauthorized 
+            return res.status(403).json({error: 'Forbidden'})
+        }
+    })
+}
+
+// middleware for admin role
+exports.requireAdmin = (req, res, next) =>{
+    // verify jwt
+    expressjwt({
+        secret:process.env.JWT_SECRET,
+        algorithms:['HS256']
+    })(req, res, (err)=>{
+        if(err){
+            return res.status(401).json({error: 'Unauthorized'})
+        }
+        //check for user role
+        if(req.user.role === 1){
+            //grant access
+            next()
+        }
+        else{
+            // unauthorized 
+            return res.status(403).json({error: 'Forbidden'})
+        }
+    })
 }
