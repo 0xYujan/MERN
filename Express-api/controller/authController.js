@@ -202,13 +202,14 @@ exports.requireUser = (req, res, next) =>{
     // verify jwt
     expressjwt({
         secret:process.env.JWT_SECRET,
-        algorithms:['HS256']
+        algorithms:['HS256'],
+        requestProperty:'auth'
     })(req, res, (err)=>{
         if(err){
             return res.status(401).json({error: 'Unauthorized'})
         }
         //check for user role
-        if(req.user.role === 0){
+        if(req.auth.role === 0){
             //grant access
             next()
         }
@@ -224,13 +225,14 @@ exports.requireAdmin = (req, res, next) =>{
     // verify jwt
     expressjwt({
         secret:process.env.JWT_SECRET,
-        algorithms:['HS256']
+        algorithms:['HS256'],
+        requestProperty:'auth'
     })(req, res, (err)=>{
         if(err){
             return res.status(401).json({error: 'Unauthorized'})
         }
         //check for user role
-        if(req.user.role === 1){
+        if(req.auth.role === 1){
             //grant access
             next()
         }

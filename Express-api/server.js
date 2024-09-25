@@ -23,6 +23,7 @@ const app = express()
 //middleware
 app.use(bodyParser.json())
 app.use(morgan('dev'))
+app.use('/public/uploads', express.static('public/uploads'))
 
 // Routes 
 app.use('/api', categoryRoute)

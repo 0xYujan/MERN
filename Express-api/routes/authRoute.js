@@ -7,7 +7,7 @@ router.put('/confirmation/:token', postEmailConfirmation )
 router.post('/signin', signIn )
 router.post('/forget/password', forgetPassword)
 router.put('/forget/password/:token', resetPassword)
-router.get('/user/list', requireAdmin,userList)
+router.get('/user/list',requireAdmin, userList)
 router.get('/user/details/:id', userDetails)
 
 module.exports = router

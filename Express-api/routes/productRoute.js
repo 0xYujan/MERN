@@ -3,8 +3,9 @@ const { postProduct, productList, productDetails, updateProduct, deleteProduct }
 const { updateCategory } = require('../controller/categoryController')
 const { requireAdmin } = require('../controller/authController')
 const router = express.Router()
+const upload = require('../middleware/file-upload')
 
-router.post('/postproduct', requireAdmin, postProduct)
+router.post('/postproduct', upload.single('product_image') , postProduct)
 router.get('/productlist', productList)
 router.get('/productdetails/:id', productDetails)
 router.put('/productupdate/:id', requireAdmin, updateProduct)
