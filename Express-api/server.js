@@ -9,6 +9,7 @@ const categoryRoute = require('./routes/categoryRoute')
 const productRoute = require('./routes/productRoute')
 const authRoute = require('./routes/authRoute')
 const orderRoute = require('./routes/orderRoute')
+const cors = require('cors')
 
 
 const app = express()
@@ -24,6 +25,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use('/public/uploads', express.static('public/uploads'))
+app.use(cors())
 
 // Routes 
 app.use('/api', categoryRoute)

@@ -59,7 +59,7 @@ exports.orderList = async (req, res) => {
     .populate("user", "name")
     .sort({ createdAt: -1 }); // decending order
   if (!order) {
-    return res.status(400).json({ error: "sonting went wrong" });
+    return res.status(400).json({ error: "somthing went wrong" });
   }
   res.send(order);
 };

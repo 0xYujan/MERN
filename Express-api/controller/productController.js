@@ -4,6 +4,11 @@ const Product = require('../models/productModel')
 
 //to post product
 exports.postProduct = async(req, res)=>{
+  // to check if file is not chosen 
+  if(!req.file){
+    return res.status(400).json({error:'product image is required'})
+
+  }
     let product = new Product({
         product_name:req.body.product_name,
         product_price:req.body.product_price,
