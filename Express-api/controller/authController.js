@@ -5,6 +5,8 @@ const sendEmail = require('../utils/setEmail')
 const jwt = require('jsonwebtoken') // authentication
 const {expressjwt} = require('express-jwt') // authorization
 // to register a new user
+const path = require('path')
+const fs = require('fs')
 
 exports.postUser = async(req, res)=>{
     let user = new User({
@@ -27,6 +29,15 @@ exports.postUser = async(req, res)=>{
             if(!token){
                 return res.status(400).json({error:'failed to create a token'})
             }
+            //load template
+            const templatePath = path.join(__dirname, 'emailTemplate.html')
+            let emailTemplate = fs.readFileSync(templatePath, 'utf-8')
+
+            // verification url
+            const verificationUrl = `${process.env.FRONTEND_URL}/email/confirmation/${token.token}`
+            //replace placeholder by verification url
+            emailTemplate = emailTemplate.replace('{{url}}', verificationUrl)
+
 
             //send email process 
             sendEmail({
@@ -36,9 +47,7 @@ exports.postUser = async(req, res)=>{
                 text:`Hello, \n\n Please verify your email by using the below link\n\n
                 http:\/\/${req.headers.host}\/api\/confirmation\/${token.token}
                 `,
-                html:`
-                <h1> Verify your Email </h1>
-                `
+                html:emailTemplate
             })
             res.send(user)
         }else{
@@ -122,6 +131,9 @@ exports.signIn = async(req, res) =>{
     return res.json({token, user:{_id, name, email, role}})
 }
 
+  
+
+
 //forgot password
 exports.forgetPassword = async(req, res)=>{
     const user = await User.findOne({email:req.body.email})
@@ -138,7 +150,18 @@ exports.forgetPassword = async(req, res)=>{
         return res.status(400).json({error:'Failed to create a token'})
 
     }
+
     //send email process 
+    
+     //load template
+   const templatePath = path.join(__dirname, 'passwordResetTamplate.html')
+   let pwdTemplate = fs.readFileSync(templatePath, 'utf-8')
+
+   // verification url
+   const pwdResetUrl = `${process.env.FRONTEND_URL}/reset/password/${token.token}`
+   //replace placeholder by verification url
+   pwdTemplate = pwdTemplate.replace('{{url}}', pwdResetUrl)
+
     sendEmail({
         from:'no-reply@online-store.com',
         to:user.email,
@@ -146,9 +169,7 @@ exports.forgetPassword = async(req, res)=>{
         text:`Hello, \n\n Please reset your password by using the below link\n\n
         http:\/\/${req.headers.host}\/api\/forget\/password\/${token.token}
         `,
-        html:`
-        <h1>Password Reset Link</h1>
-        `
+        html:pwdTemplate
     })
 
     res.json({msg:'password reset link has been send to your email'})
